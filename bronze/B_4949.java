@@ -2,7 +2,7 @@ package bronze;
 import java.util.Scanner;
 import java.util.Stack;
  
-public class Main {
+public class B_4949 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
  
