@@ -1,0 +1,46 @@
+
+import java.util.*;
+
+public class B_22252 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
+		
+		int T = scan.nextInt();
+
+		// 딕셔너리 구현을 위한 변수 선언
+		Map<String, PriorityQueue> dict = new HashMap<>();
+
+		int type = 0; // 1 or 2 타입
+		String name = ""; // 고릴라 이름
+		int n = 0; // 정보의 갯수
+		long result = 0; // 최종 결과값
+
+		for (int i = 0; i < T; i++) {
+			type = scan.nextInt();
+			name = scan.next();
+			n = scan.nextInt();
+
+			if (type == 1) { // 고릴라가 정보 얻는 경우
+				PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+				if (dict.get(name) != null) {
+					pq = dict.get(name);
+				}
+				for (int j = 0; j < n; j++) {
+					pq.add(scan.nextInt());
+				}
+				dict.put(name, pq);
+			} else { // 호석이가 고릴라에게 정보 구매하는 경우
+				PriorityQueue<Integer> tq = dict.get(name);
+				if (dict.get(name) != null) {
+					int min = Math.min(tq.size(), n);
+					for (int j = 0; j < min; j++) {
+						result += tq.remove();
+					}
+				}
+			}
+		}
+		System.out.println(result);
+	}
+}
