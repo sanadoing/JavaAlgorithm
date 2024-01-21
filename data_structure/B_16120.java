@@ -1,4 +1,4 @@
-package workshop.ws01;
+// package data_structure;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 //import java.util.Scanner;
 import java.util.Stack;
 
-public class B_16120_2 {
+public class B_16120 {
 
 	public static void main(String[] args) throws IOException {
 		
