@@ -1,4 +1,4 @@
-package now;
+package bronze;
 
 public class B_25083 {
   public static void main(String[] args) {
