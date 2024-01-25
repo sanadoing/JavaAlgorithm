@@ -1,13 +1,12 @@
-package now;
+package bronze;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 
-
-public class test {
-  public static void main(String[] args) throws IOException {
+public class B_2338 {
+   public static void main(String[] args) throws IOException {
 
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BigInteger A = new BigInteger (br.readLine());
