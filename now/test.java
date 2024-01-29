@@ -1,20 +1,31 @@
 package now;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.math.BigInteger;
-
+import java.util.Scanner;
 
 public class test {
-  public static void main(String[] args) throws IOException {
-
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    BigInteger A = new BigInteger (br.readLine());
-    BigInteger B = new BigInteger (br.readLine());
-    System.out.println(A.add(B)); 
-    System.out.println(A.subtract(B)); 
-    System.out.println(A.multiply(B));    
+  public static void main(String[] args)  {
+    Scanner scan = new Scanner(System.in);
+  
+    int n = scan.nextInt();
+    int m = scan.nextInt();
+    int[][] arr1 = new int[n][m];
+    int[][] arr2 = new int[n][m];
+    for (int c = 0 ; c < 2 ; c++){
+    for (int i = 0; i<n; i++){
+      for (int j = 0; j<m;j++){
+        arr1[i][j] += scan.nextInt();
+      }
+    }
+  }
+  for (int i = 0; i<n; i++){
+    for (int j = 0; j<m;j++){
+      
+      System.out.print(arr1[i][j]+" ");
+    }
+    System.out.println();
+  }
+  
+   
 
   }
 }
