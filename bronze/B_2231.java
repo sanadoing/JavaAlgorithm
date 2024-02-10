@@ -9,6 +9,7 @@ public class B_2231 {
 		int N = Integer.parseInt(br.readLine());
 		String str;
 		int result;
+    boolean flag = false;
 		for (int i = 1; i < N; i++) {
 			str = i + "";
       result = i;
@@ -17,8 +18,12 @@ public class B_2231 {
       }
       if(result == N){
         System.out.println(i);
+        flag = true;
         break;
       }
 		}
+    if(!flag){
+      System.out.println(0);
+    }
 	}
 }
