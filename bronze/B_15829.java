@@ -7,14 +7,14 @@ public class B_15829 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int N = Integer.parseInt(br.readLine());
 		String input = br.readLine();
-		int result = 0;
-		int hash = 1;
+		long result = 0;
+		long hash = 1;
+		long M = 1234567891;
 		for (int i = 0; i < input.length(); i++) {
-			result += (input.charAt(i) - '0'-48) * hash;
-			hash *= 31;
+			result += ((input.charAt(i) - 96) * hash);
+			hash = (hash * 31) % M;
 		}
-		System.out.println(result);
+		System.out.println(result % M);
 	}
 
 }
-
