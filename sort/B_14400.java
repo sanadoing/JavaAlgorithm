@@ -12,7 +12,7 @@ public class B_14400 {
     int N = Integer.parseInt(st.nextToken());
     int [] x = new int[N];
     int [] y = new int[N];
-    int result = 0;
+    long result = 0;
 
     for(int i = 0; i < N; i++){
       st = new StringTokenizer(br.readLine().trim());
