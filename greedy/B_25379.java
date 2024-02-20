@@ -31,13 +31,15 @@ public class B_25379 {
       // 왼(짝) - 오(홀) 
 			if(numbers[i]%2 == 0) {
 				even_left ++;
+
 			}else if(numbers[N-i-1]%2 == 1) {
 				odd_right ++ ;
 			}
-      // 오(짝) - 왼(홀) 
-      if(numbers[i]%2 == 0) {
-				
-			}else if(numbers[N-i-1]%2 == 1) {
+      // 왼(홀) - 오(짝) 
+      if(numbers[i]%2 == 1) {
+				result1 += (odd_right - i);
+        even_right ++;
+			}else if(numbers[N-i-1]%2 == 0) {
 				
 			}
 		}
