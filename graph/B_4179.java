@@ -6,126 +6,127 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
-
+// visit 함수를 써보쟝
 public class B_4179 {
 
-  static int R, C;
-  static String[][] board;
-  static Pos jihun, fire;
-  static int[] dy = { -1, 0, 1, 0 };
-  static int[] dx = { 0, 1, 0, -1 };
-  static Queue<Pos> jihunQueue = new ArrayDeque<>();
-  static Queue<Pos> fireQueue = new ArrayDeque<>();
-  static Queue<Pos> exitQueue = new ArrayDeque<>();
+	static int R, C, answer = Integer.MAX_VALUE;
+	static String[][] board;
+	static boolean [][] visit;
+	// static Pos jihun, fire;
+	static int[] dy = { -1, 0, 1, 0 };
+	static int[] dx = { 0, 1, 0, -1 };
+	static Queue<Pos> jihunQueue = new ArrayDeque<>();
+	static Queue<Pos> fireQueue = new ArrayDeque<>();
 
-  public static void main(String[] args) throws Exception {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer st = new StringTokenizer(br.readLine());
-    R = Integer.parseInt(st.nextToken());
-    C = Integer.parseInt(st.nextToken());
-    board = new String[R][C];
-    for (int i = 0; i < R; i++) {
-      String[] input = br.readLine().split("");
-      for (int j = 0; j < C; j++) {
-        board[i][j] = input[j];
-        if (board[i][j].equals("J")) {
-          jihun = new Pos(i, j, 0);
-          jihunQueue.offer(jihun);
-        } else if (board[i][j].equals("F")) {
-          fire = new Pos(i, j, -1);
-          fireQueue.offer(fire);
-        }
-      }
-    }
-    while (!jihunQueue.isEmpty()) {
-      // 지훈 이동
-      move_jihun();
+	public static void main(String[] args) throws Exception {
 
-      for (int i = 0; i < R; i++) {
-        System.out.println(Arrays.toString(board[i]));
-      }
-      // 불 이동
-      spread_fire();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		R = Integer.parseInt(st.nextToken());
+		C = Integer.parseInt(st.nextToken());
+		board = new String[R][C];
+		visit = new boolean[R][C];
+		for (int i = 0; i < R; i++) {
+			String[] input = br.readLine().split("");
+			for (int j = 0; j < C; j++) {
+				board[i][j] = input[j];
+				if (board[i][j].equals("J")) {
+					jihunQueue.offer(new Pos(i, j, 0));
+				} else if (board[i][j].equals("F")) {
+					fireQueue.offer(new Pos(i, j, -1));
+					visit[i][j]= true;
+				}
+			}
+		}
+		while (true) {
+			// 지훈 이동
+			move_jihun();
 
-      for (int i = 0; i < R; i++) {
-        System.out.println(Arrays.toString(board[i]));
-      }
-      System.out.println();
-    }
-  }
+			// 불 이동
+			spread_fire();
 
-  static void move_jihun() {
+			if (jihunQueue.isEmpty() || answer != Integer.MAX_VALUE)
+				break;
 
-    Queue<Pos> tempQueue = new ArrayDeque<>();
-    while (!jihunQueue.isEmpty()) {
-      Pos nowJihun = jihunQueue.poll();
-      int y = nowJihun.y;
-      int x = nowJihun.x;
+		}
+		if (answer == Integer.MAX_VALUE) {
+			System.out.println("IMPOSSIBLE");
+		} else {
+			System.out.println(answer);
+		}
+	}
 
-      for (int i = 0; i < 4; i++) {
-        int yy = y + dy[i];
-        int xx = x + dx[i];
-        if (yy < 0 || yy >= R || xx < 0 || xx >= C || !board[yy][xx].equals("."))
-          continue;
+	static void move_jihun() {
 
-        board[yy][xx] = "J";
-        tempQueue.offer(new Pos(yy, xx, nowJihun.cnt + 1));
-        if (yy == 0 || yy == R || xx == 0 || xx == C)
-          exitQueue.offer(new Pos(yy, xx, nowJihun.cnt + 1));
+		Queue<Pos> tempQueue = new ArrayDeque<>();
+		while (!jihunQueue.isEmpty()) {
+			Pos nowJihun = jihunQueue.poll();
+			int y = nowJihun.y;
+			int x = nowJihun.x;
 
-      }
-    }
-    while (!tempQueue.isEmpty()) {
-      Pos tempJihun = tempQueue.poll();
-      jihunQueue.offer(tempJihun);
-    }
+			if (board[y][x].equals("F"))
+				continue;
+			for (int i = 0; i < 4; i++) {
+				int yy = y + dy[i];
+				int xx = x + dx[i];
+				if (yy < 0 || yy >= R || xx < 0 || xx >= C) {
+					answer = Math.min(answer, nowJihun.cnt + 1);
+					continue;
+				}
+				if (!board[yy][xx].equals(".")||visit[yy][xx]) continue;
+					board[y][x] = ".";
+					board[yy][xx] = "J";
+					tempQueue.offer(new Pos(yy, xx, nowJihun.cnt + 1));
+			
 
-  }
+			}
+		}
 
-  static void spread_fire() {
-    Queue<Pos> tempQueue = new ArrayDeque<>();
-    while (!fireQueue.isEmpty()) {
-      Pos nowFire = fireQueue.poll();
-      int y = nowFire.y;
-      int x = nowFire.x;
-System.out.println(y+" "+x);
-      for (int i = 0; i < 4; i++) {
-        int yy = y + dy[i];
-        int xx = x + dx[i];
-        if (yy < 0 || yy >= R || xx < 0 || xx >= C) {
-          System.out.println(nowFire.cnt);
-          System.exit(0);
-        }
+		while (!tempQueue.isEmpty()) {
+			jihunQueue.offer(tempQueue.poll());
+		}
 
-        if (board[yy][xx].equals(".") && board[yy][xx].equals("R")) {
-          board[yy][xx] = "F";
-          tempQueue.offer(new Pos(yy, xx, -1)); 
-        }
-        
+	}
 
-      }
-    }
-    while (!tempQueue.isEmpty()) {
-      Pos tempFire = tempQueue.poll();
-      fireQueue.offer(tempFire);
-    }
-  }
+	static void spread_fire() {
+		Queue<Pos> tempQueue = new ArrayDeque<>();
+		while (!fireQueue.isEmpty()) {
+			Pos nowFire = fireQueue.poll();
+			int y = nowFire.y;
+			int x = nowFire.x;
 
-  static class Pos {
-    int y;
-    int x;
-    int cnt;
+			for (int i = 0; i < 4; i++) {
+				int yy = y + dy[i];
+				int xx = x + dx[i];
+				if (yy < 0 || yy >= R || xx < 0 || xx >= C || board[yy][xx].equals("#")|| visit[yy][xx])
+					continue;
+					visit[yy][xx] = true;
+				board[yy][xx] = "F";
+				tempQueue.offer(new Pos(yy, xx, -1));
 
-    Pos(int y, int x, int cnt) {
-      this.y = y;
-      this.x = x;
-      this.cnt = cnt;
-    }
+			}
+		}
+		while (!tempQueue.isEmpty()) {
+			fireQueue.offer(tempQueue.poll());
+		}
 
-    @Override
-    public String toString() {
-      return "Pos [y=" + y + ", x=" + x + ", cnt=" + cnt + "]";
-    }
+	}
 
-  }
+	static class Pos {
+		int y;
+		int x;
+		int cnt;
+
+		Pos(int y, int x, int cnt) {
+			this.y = y;
+			this.x = x;
+			this.cnt = cnt;
+		}
+
+		@Override
+		public String toString() {
+			return "Pos [y=" + y + ", x=" + x + ", cnt=" + cnt + "]";
+		}
+
+	}
 }
