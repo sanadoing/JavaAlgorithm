@@ -1,5 +1,9 @@
 package binary_search;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 public class B_2343 {
 	static int N, M;
 	static int sum, max;
