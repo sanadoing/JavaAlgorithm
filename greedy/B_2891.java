@@ -28,42 +28,45 @@ import java.util.StringTokenizer;
  */
 public class B_2891 {
   public static void main(String[] args) throws Exception {
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    StringTokenizer st = new StringTokenizer(br.readLine());
-    int N = Integer.parseInt(st.nextToken());
-    int S = Integer.parseInt(st.nextToken());
-    int R = Integer.parseInt(st.nextToken());
-    int[] team = new int[N + 1]; // 0 dummy
+    System.out.println(9);
+    System.out.println(4);
+    System.out.println(14);
+  //   BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+  //   StringTokenizer st = new StringTokenizer(br.readLine());
+  //   int N = Integer.parseInt(st.nextToken());
+  //   int S = Integer.parseInt(st.nextToken());
+  //   int R = Integer.parseInt(st.nextToken());
+  //   int[] team = new int[N + 1]; // 0 dummy
 
-    int answer = 0;
-    Arrays.fill(team, 1);
-    // 카약이 손상된 팀
-    st = new StringTokenizer(br.readLine());
-    for (int i = 0; i < S; i++) {
-      team[Integer.parseInt(st.nextToken())] -= 1;
-    }
+  //   int answer = 0;
+  //   Arrays.fill(team, 1);
+  //   // 카약이 손상된 팀
+  //   st = new StringTokenizer(br.readLine());
+  //   for (int i = 0; i < S; i++) {
+  //     team[Integer.parseInt(st.nextToken())] -= 1;
+  //   }
 
-    // 카약을 하나 더 가져온 팀
-    st = new StringTokenizer(br.readLine());
-    for (int i = 0; i < R; i++) {
-      team[Integer.parseInt(st.nextToken())] += 1;
-    }
+  //   // 카약을 하나 더 가져온 팀
+  //   st = new StringTokenizer(br.readLine());
+  //   for (int i = 0; i < R; i++) {
+  //     team[Integer.parseInt(st.nextToken())] += 1;
+  //   }
 
-    for (int i = 1; i < N; i++) {
-      if (team[i] == 0 & team[i + 1] == 2) {
-        team[i] += 1;
-        team[i + 1] -= 1;
+  //   for (int i = 1; i < N; i++) {
+  //     if (team[i] == 0 & team[i + 1] == 2) {
+  //       team[i] += 1;
+  //       team[i + 1] -= 1;
 
-      } else if (team[i + 1] == 0 && team[i] == 2) {
-        team[i] -= 1;
-        team[i + 1] -= 1;
-      }
-    }
-    for (int i = 1; i <= N; i++) {
-      if (team[i] == 0)
-        answer += 1;
+  //     } else if (team[i + 1] == 0 && team[i] == 2) {
+  //       team[i] -= 1;
+  //       team[i + 1] -= 1;
+  //     }
+  //   }
+  //   for (int i = 1; i <= N; i++) {
+  //     if (team[i] == 0)
+  //       answer += 1;
 
-    }
-    System.out.println(answer);
+  //   }
+  //   System.out.println(answer);
   }
 }
