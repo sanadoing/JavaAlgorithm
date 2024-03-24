@@ -2,6 +2,8 @@
 
 import java.util.*;
 
+import dijkstra.Pos;
+
 class Pos {
 	int y, x;
 
@@ -69,7 +71,7 @@ public class B_3190 {
 			int xx = snake_head.x + dx[d];
 			// 벽이나 자기자신의 몸과 부딪히는지
 			if (yy < 0 || N - 1 < yy || xx < 0 || N - 1 < xx || board[yy][xx] == 1) {
-				
+
 				System.out.println(result_time + 1);
 				break;
 			} else {
