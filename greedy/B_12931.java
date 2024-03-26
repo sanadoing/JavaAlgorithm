@@ -10,18 +10,31 @@ public class B_12931 {
     int N = Integer.parseInt(br.readLine());
     StringTokenizer st = new StringTokenizer(br.readLine());
     int[] numbers = new int[N];
-    int minN = Integer.MAX_VALUE;
 
     for (int i = 0; i < N; i++) {
       numbers[i] = Integer.parseInt(st.nextToken());
-      minN = Math.min(minN, numbers[i]);
     }
 
+    int twoCnt = 0;
     int result = 0;
 
-    System.out.println(Math.log(100) / Math.log(2));
-
-    System.out.println(result);
+    for (int i = 0; i < N; i++) {
+      int now = numbers[i];
+      int tempCnt = 0;
+      while (true) {
+        if (now == 0) {
+          break;
+        } else if (now % 2 == 0) {
+          now /= 2;
+          tempCnt += 1;
+        } else if (now % 2 == 1) {
+          now -= 1;
+          result += 1;
+        }
+      }
+      twoCnt = Math.max(twoCnt, tempCnt);
+    }
+    System.out.println(result + twoCnt);
   }
 
 }
