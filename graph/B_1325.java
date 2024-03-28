@@ -56,7 +56,7 @@ public class B_1325  {
                   }
                } else { 
                   que.offer(graph.get(cur).get(j));
-               }
+               } 
             }
          }
          max = hacking[i] > max ? hacking[i] : max;
