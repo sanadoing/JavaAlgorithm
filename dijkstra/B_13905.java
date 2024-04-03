@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// (틀림 51%) 출발지에서 목적지로 갈 수 없는 경우에 대한 언급은 없지만
+// 그럴 경우가 있으므로 그럴 땐 0을 출력해줘야 함.
 public class B_13905 {
 
 	static int houseCnt, bridgeCnt, startPoint, endPoint;
