@@ -33,6 +33,6 @@ public class B_11403 {
       }
       sb.append("\n");
     }
-    System.out.println(sb);
+    System.out.println(sb);   
   }
 }
