@@ -8,20 +8,24 @@ public class B_5373_큐빙 {
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int T = Integer.parseInt(br.readLine());
-    String[] color = new String[] { "g", "r", "b", "w", "o", "y" };
+    String[] color = new String[] { "w", "g", "r", "b", "o", "y" };
     for (int t = 0; t < T; t++) {
 
       // 큐브 초기화
-      String[][][] Qube = new String[5][3][3];
-      for (int c = 0; c < 5; c++) {
-        for (int i = 0; i < 3; i++) {
-          for (int j = 0; j < 3; j++) {
-            Qube[c][i][j] = color[c];
-          }
+      String[] Qube = new String[56];
+
+      int idx = 0;
+      for (int c = 0; c < 56; c++) {
+        if(c % 9 == 0){
+          idx += 1;
         }
+        Qube[c] = color[idx];
       }
 
       int N = Integer.parseInt(br.readLine());
+
+      int[][] changeList = new int[]
+
 
       StringTokenizer st = new StringTokenizer(br.readLine());
       for (int i = 0; i < N; i++) {
@@ -33,6 +37,7 @@ public class B_5373_큐빙 {
 
         if (c == 'L') {
           if (d == '-') {
+          
 
           } else {
 
