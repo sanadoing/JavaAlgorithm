@@ -83,7 +83,7 @@ public class B_22865 {
     int node;
     long cost;
 
-    public Node(int node, long cost) {
+    Node(int node, long cost) {
       this.node = node;
       this.cost = cost;
     }
