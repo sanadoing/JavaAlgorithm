@@ -1,4 +1,3 @@
-package Month04.Week04;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
