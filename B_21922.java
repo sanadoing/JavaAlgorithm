@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+// bfs + 시뮬 
 public class B_21922 {
 
 	static int[] dy = { -1, 0, 1, 0 };
