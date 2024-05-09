@@ -3,6 +3,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+// 35% 틀림 - cnt 세는게 이상햇고, 얼마만큼 방문을 할 수 있는지에 대한 cnt의 범위를 정하지 못함.
 public class B_31404 {
 	 static int[] dy = { -1, 0, 1, 0 };
 	    static int[] dx = { 0, 1, 0, -1 };
